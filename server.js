@@ -4,7 +4,7 @@ const socket = require('socket.io');
 const app = express();
 
 const messages = [];
-let users = [];
+const users = [];
 
 app.use(express.static(path.join(__dirname, '/client')));
 
@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
     console.log('Oh, socket ' + socket.id + ' has left!');
     const userOut = users.find(user => user.id === socket.id);
     socket.broadcast.emit('userLoggedOut', userOut);
-    let i = users.indexOf(userOut);
+    const i = users.indexOf(userOut);
     users.splice(i, 1);
     console.log(users);
   });
